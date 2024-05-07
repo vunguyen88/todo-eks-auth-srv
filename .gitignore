@@ -1,0 +1,18 @@
+# Dependency directories
+node_modules/
+/dist/
+
+# TypeScript build output
+*.js
+*.js.map
+
+# Environment variables
+.env
+
+# Editor directories and files
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
