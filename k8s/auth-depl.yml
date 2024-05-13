@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-depl
+  labels:
+    app: auth    
+spec:
+  selector:
+    matchLabels:
+      app: auth
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: auth
+    spec:
+      containers:
+      - name: auth
+        # image: 715514482422.dkr.ecr.us-east-2.amazonaws.com/auth-srv:latest
+        image: vunguyen88/todoeks-auth
+        ports:
+        - name: auth
+          containerPort: 8000
+
+        
