@@ -57,6 +57,8 @@ jobs:
   DEPLOY_TO_EKS:
     needs: BUILD_AND_PUBLISH
     runs-on: ubuntu-latest
+    # env:
+    #   SECRET_KEY: ${{ secrets.REGISTRY }}
     steps:
       - name: Code checkout
         uses: actions/checkout@v4
@@ -76,6 +78,9 @@ jobs:
       
       - name: Get Kube config file
         run: aws eks update-kubeconfig --region ${{ env.AWS_REGION}} --name ${{ env.EKS_CLUSTER }}
+
+      - name: Create secret
+        run: kubectl create secret generic todosecrets --from-literal=registry=${{ secrets.REGISTRY }}
 
       # - name: Login to ECR
       #   run: aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 715514482422.dkr.ecr.us-east-2.amazonaws.com
