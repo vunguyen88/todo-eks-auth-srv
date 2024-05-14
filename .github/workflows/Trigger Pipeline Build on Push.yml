@@ -29,10 +29,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Build Docker image
-        run: docker build -t vunguyen88/todoeks-client:latest .
+        run: docker build -t vunguyen88/todoeks-auth:latest .
           
       - name: Push built image to Docker Hub
-        run: docker push vunguyen88/todoeks-client:latest
+        run: docker push vunguyen88/todoeks-auth:latest
 
       # - name: Build & Upload image to ECR
       #   uses: appleboy/docker-ecr-action@master
