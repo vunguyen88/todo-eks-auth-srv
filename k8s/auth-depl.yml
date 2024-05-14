@@ -21,11 +21,5 @@ spec:
         ports:
         - name: auth
           containerPort: 8000
-        env:
-        - name: REGISTRY_SECRET_TEST
-          valueFrom:
-            secretKeyRef:
-              name: todosecrets
-              key: registry
 
         

@@ -31,7 +31,7 @@ export const User = {
       },
     };
     const response = await dynamoDB.query(params).promise();
-    // console.log('response ', response)
+
     return response.Items as UserDocument | null;
   },
 

@@ -16,7 +16,6 @@ const options: cors.CorsOptions = {
     origin: allowedOrigins
 };
 
-console.log('process.env REGISTRY_SECRET_TEST', process.env.REGISTRY_SECRET_TEST);
 app.use(cors(options));
 
 app.use(bodyParser.json());
