@@ -21,9 +21,9 @@ Clone this repository to your local machine using the following command:
 ```sh
 docker build -t todo-eks-auth .
 ```
-### 3. Run and map port 3000 to React app
+### 3. Run and map port 8000 to Auth server
 ```sh
-docker run -p 3000:3000 todo-eks-auth
+docker run -p 8000:8000 todo-eks-auth
 ```
 The repo pipeline setup for both manually and automatically deployment using Github Actions to automatically perform following scripts:
   - checkout code
