@@ -4,6 +4,7 @@ import { User } from '../models/User';
 import { generateToken } from '../utils/jwtUtils';
 import { v1 as uuidv1 } from 'uuid';
 import { Password } from '../utils/password';
+import { sqsClient } from '../utils/sqs';
 
 export const register = async (req: Request, res: Response) => {
   try {
@@ -37,9 +38,18 @@ export const login = async (req: Request, res: Response) => {
     }
     // generate jwt-token
     const token = generateToken(user[0].userId);
+
+    const param = {
+      MessageBody:
+        "Test message from Auth Service",
+      QueueUrl: "https://sqs.us-east-2.amazonaws.com/715514482422/testSMSqueue",
+    }
+    const sqsRes = await sqsClient.sendMessage(param).promise();
+    console.log('sqsRes ', sqsRes)
+
     res.json({ token });
   } catch (err) {
-    console.error(err);
+    console.error("error", err);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
