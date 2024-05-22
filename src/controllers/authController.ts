@@ -4,7 +4,9 @@ import { User } from '../models/User';
 import { generateToken } from '../utils/jwtUtils';
 import { v1 as uuidv1 } from 'uuid';
 import { Password } from '../utils/password';
-import { sqsClient } from '../utils/sqs';
+import { sqsClient } from '../configs/awsConfig';
+import { generateRandomCode } from '../utils/helper';
+import { SendMessageRequest } from 'aws-sdk/clients/sqs'; // Import SendMessageRequest type from AWS SDK
 
 export const register = async (req: Request, res: Response) => {
   try {
@@ -31,6 +33,7 @@ export const login = async (req: Request, res: Response) => {
     if (!user) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
+
     // compare supplied password with stored password
     const validPassword = await Password.compare(user[0].password, password);
     if (!validPassword) {
@@ -39,11 +42,18 @@ export const login = async (req: Request, res: Response) => {
     // generate jwt-token
     const token = generateToken(user[0].userId);
 
-    const param = {
-      MessageBody:
-        "Test message from Auth Service",
+    let requestId = Date.now();
+    let authCode = generateRandomCode();
+    
+    const param: SendMessageRequest = {
+      MessageBody: JSON.stringify({
+        requestId,
+        authCode,
+        message: `Use code ${ authCode } to login, please do not share it with anyone`
+      }),
       QueueUrl: "https://sqs.us-east-2.amazonaws.com/715514482422/testSMSqueue",
     }
+    
     const sqsRes = await sqsClient.sendMessage(param).promise();
     console.log('sqsRes ', sqsRes)
 
