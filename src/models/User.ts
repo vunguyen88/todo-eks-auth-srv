@@ -1,8 +1,9 @@
 // src/models/User.ts
 import { DynamoDB } from 'aws-sdk';
-import config from '../config';
+// import config from '../config';
 
-const dynamoDB = new DynamoDB.DocumentClient(config.aws_remote_config);
+// const dynamoDB = new DynamoDB.DocumentClient(config.aws_auth_service_config);
+import { dynamoDB } from "../configs/awsConfig";
 
 export interface UserAttributes {
   email: string;
@@ -18,20 +19,26 @@ export const User = {
       TableName: 'users',
       Item: userAttributes,
     };
-    await dynamoDB.put(params).promise();
+    await dynamoDB.putItem(params).promise();
     return userAttributes;
   },
 
   async findOne(query: { email: string }): Promise<UserDocument | null> {
-    const params: DynamoDB.DocumentClient.QueryInput = {
+    console.log('qury in findOne ', query)
+    // const params: DynamoDB.DocumentClient.QueryInput = {
+    const params: DynamoDB.Types.QueryInput = {
       TableName: 'users',
       KeyConditionExpression: "email = :email",
       ExpressionAttributeValues: {
-        ':email': query.email,
+        ':email': { S: query.email }
       },
     };
+    // const response = await dynamoDB.query(params).promise();
     const response = await dynamoDB.query(params).promise();
-
+    // let found = {};
+    // response.Items?.forEach(item => found = item)
+    // console.log('response ', response.Items?.forEach(item => found = item))
+    // console.log('found ', found)
     return response.Items as UserDocument | null;
   },
 

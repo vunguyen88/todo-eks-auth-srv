@@ -28,6 +28,7 @@ export const login = async (req: Request, res: Response) => {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
+    console.log('user ', user)
     if (!user) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -37,7 +38,7 @@ export const login = async (req: Request, res: Response) => {
       return res.status(401).json({ error: 'Unauthorized' });
     }
     // generate jwt-token
-    const token = generateToken(user[0].userId);
+    const token = generateToken(user.userId);
 
     const param = {
       MessageBody:
