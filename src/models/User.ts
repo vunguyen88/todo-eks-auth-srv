@@ -1,8 +1,9 @@
 // src/models/User.ts
 import { DynamoDB } from 'aws-sdk';
-import config from '../config';
+// import config from '../config';
+import { dynamoDB } from "../configs/awsConfig";
 
-const dynamoDB = new DynamoDB.DocumentClient(config.aws_remote_config);
+//const dynamoDB = new DynamoDB.DocumentClient(config.aws_remote_config);
 
 export interface UserAttributes {
   email: string;
