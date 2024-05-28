@@ -4,6 +4,8 @@ import { DynamoDB } from 'aws-sdk';
 
 dotenv.config()
 
+// Set the region
+AWS.config.update({ region: process.env.AWS_REGION });
 const dynamoDB = new DynamoDB.DocumentClient({
   accessKeyId: process.env.AWS_IAM_AUTH_SERVICE_ACCESS_KEY,
   secretAccessKey: process.env.AWS_IAM_AUTH_SERVICE_SECRET_KEY,
