@@ -1,8 +1,8 @@
 import AWS from "aws-sdk";
-import dotenv from 'dotenv';
+//import dotenv from 'dotenv';
 import { DynamoDB } from 'aws-sdk';
 
-dotenv.config()
+//dotenv.config()
 console.log('AWS_IAM_AUTH_SERVICE_ACCESS_KEY', process.env.AWS_IAM_AUTH_SERVICE_ACCESS_KEY)
 console.log('region ', process.env.AWS_REGION)
 // Set the region
