@@ -8,8 +8,8 @@ name: Trigger Pipeline on New Feature Push
       - 'debug/**'
 env:
   # Credentials for deployment to AWS
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_IAM_AUTH_SERVICE_ACCESS_KEY: ${{ secrets.AWS_IAM_AUTH_SERVICE_ACCESS_KEY }}
+  AWS_IAM_AUTH_SERVICE_SECRET_KEY: ${{ secrets.AWS_IAM_AUTH_SERVICE_SECRET_KEY }}
   # S3 bucket for Terraform state
   ECR_REPOSITORY: client-srv
   AWS_REGION: us-east-2
