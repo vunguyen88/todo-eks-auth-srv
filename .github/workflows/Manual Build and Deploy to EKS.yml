@@ -10,8 +10,8 @@ name: Manual Build and Deploy to EKS
       #         required: true
 
 env:
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_IAM_AUTH_SERVICE_ACCESS_KEY: ${{ secrets.AWS_IAM_AUTH_SERVICE_ACCESS_KEY }}
+  AWS_IAM_AUTH_SERVICE_SECRET_KEY: ${{ secrets.AWS_IAM_AUTH_SERVICE_SECRET_KEY }}
   # S3 bucket for Terraform state
   ECR_REPOSITORY: auth-srv
   AWS_REGION: us-east-2
