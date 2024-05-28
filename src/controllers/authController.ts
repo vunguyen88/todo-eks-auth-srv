@@ -49,9 +49,12 @@ export const login = async (req: Request, res: Response) => {
       MessageBody: JSON.stringify({
         requestId,
         authCode,
+        notificationType: "email",
+        sender: "test@test.com",
+        recipient: email,
         message: `Use code ${ authCode } to login, please do not share it with anyone`
       }),
-      QueueUrl: "https://sqs.us-east-2.amazonaws.com/715514482422/testSMSqueue",
+      QueueUrl: "https://sqs.us-east-2.amazonaws.com/715514482422/todo-eks-sqs-mfa",
     }
     
     const sqsRes = await sqsClient.sendMessage(param).promise();
