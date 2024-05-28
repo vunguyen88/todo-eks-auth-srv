@@ -21,5 +21,22 @@ spec:
         ports:
         - name: auth
           containerPort: 8000
+        env:
+        - name: AWS_IAM_AUTH_SERVICE_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: authserviceaccesskey
+              key: auth_service_access_key
+        - name: AWS_IAM_AUTH_SERVICE_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: authservicesecretkey
+              key: auth_service_secret_key
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: jwt
+              key: jwt_secret
+
 
         
