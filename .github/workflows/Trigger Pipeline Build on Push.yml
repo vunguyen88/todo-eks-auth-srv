@@ -74,4 +74,4 @@ jobs:
       #   run: aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 715514482422.dkr.ecr.us-east-2.amazonaws.com
 
       - name: Rollout update code build to EKS cluster
-        run: kubectl rollout restart deployment client-depl
+        run: kubectl rollout restart deployment auth-depl

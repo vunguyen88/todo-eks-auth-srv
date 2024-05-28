@@ -9,13 +9,13 @@ console.log('AWS_REGION ', process.env.AWS_REGION)
 const dynamoDB = new DynamoDB.DocumentClient({
   accessKeyId: process.env.AWS_IAM_AUTH_SERVICE_ACCESS_KEY,
   secretAccessKey: process.env.AWS_IAM_AUTH_SERVICE_SECRET_KEY,
-  region: process.env.AWS_REGION
+  region: 'us-east-2'
 });
 
 const awsConfig = new AWS.Config({
   accessKeyId: process.env.AWS_IAM_AUTH_SERVICE_ACCESS_KEY,
   secretAccessKey: process.env.AWS_IAM_AUTH_SERVICE_SECRET_KEY,
-  region: process.env.AWS_REGION
+  region: 'us-east-2'
 });
 
 const sqsClient =  new AWS.SQS(awsConfig);
