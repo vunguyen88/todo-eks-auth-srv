@@ -1,6 +1,6 @@
 export function generateRandomCode(): string {
-  // Generate a random number between 100000 and 999999
-  return Math.floor(100000 + Math.random() * 900000).toString();
+  // Generate a random number between 1000 and 9999
+  return Math.floor(1000 + Math.random() * 9000).toString();
 }
 
 export function generate8DigitRandomString() {
